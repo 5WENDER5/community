@@ -1,8 +1,7 @@
 ##交流社区
 
 ##资料
-https://spring.io/guides
-https://spring.io/guides/gs/serving-web-content/
-sh
+[Spring 文档](https://spring.io/guides)
+[Spring Web](https://spring.io/guides/gs/serving-web-content/sh)
 ##工具
-git
+[Git](https://git-scm.com/download)
