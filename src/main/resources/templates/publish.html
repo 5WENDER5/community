@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发布 - hello! world</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">hello! word</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">hello! word</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索问题">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${session.user != null}">
+                    <a href="/publish">发布</a>
+                </li>
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">个人资料</a></li>
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+                </li>
+                <li th:if="${session.user == null}">
+                    <a href="https://github.com/login/oauth/authorize?client_id=5ef74cb78c4bf6246efa&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></h2>
+            <hr>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题：</label>
+                    <input type="text" class="form-control" th:value="${title}"  id="title" name="title" placeholder="问题标题————">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充（必填）</label>
+                    <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag" th:value="${tag}" placeholder="输入标签，以逗号分隔" >
+                </div>
+
+                <div class="alert alert-danger" th:text="${error}" th:if="${error != null}"></div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>JAVA</h3>
+            James Gosling博士以“Java技术之父”闻名于世。
+            他是Java技术的创始人，作为Sun研究院院士，
+            亲手设计了Java语言，完成了Java技术的原始
+            编译器和虚拟机。 在他的带领下，Java现已成
+            为互联网的标准编程 模式以及分布式企业级应
+            用的事实标准，其跨平 台的技术优势为网络计
+            算带来了划时代的变革。 目前，Gosling博士积
+            极致力于软件开发工具的研 究，以使软件开发
+            工具的功能更强大，更容易为开 发人员所使用，
+            确保应用、服务开发的迅速完成。
+        </div>
+    </div>
+</div>
+</body>
+</html>
